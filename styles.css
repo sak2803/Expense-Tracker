@@ -1,3 +1,4 @@
+/*index page*/
 body{
     justify-content: center;
     align-items: center;
@@ -60,7 +61,7 @@ fieldset{
     width: 102px;
 }
 
-#submitBtn{
+#submitBtn,#monthlyBtn{
     text-align: center;
     margin: 10px auto;
     position: relative;
@@ -70,15 +71,13 @@ fieldset{
     display: block;
     font-weight: lighter;
     padding: 5px 10px;
-    font-size: 14px;
+    font-size: 15px;
 
 }
 
-#sumDaily{
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+#monthlyBtn{
+    width: 20%;
+    background-color: #000000;
+    color: rgb(21, 255, 0);
+    font-weight: bold;
 }
-
-
-
-
