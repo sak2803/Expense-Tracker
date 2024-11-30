@@ -1,21 +1,25 @@
 const form=document.getElementById('form');
-var date=document.getElementById('date');
-var breakfast=document.getElementById('breakfast');
-var lunch=document.getElementById('lunch');
-var tea=document.getElementById('tea');
-var dinner=document.getElementById('dinner');
-var others=document.getElementById('others');
+const date=document.getElementById('date');
+const breakfast=document.getElementById('breakfast');
+const lunch=document.getElementById('lunch');
+const tea=document.getElementById('tea');
+const dinner=document.getElementById('dinner');
+const others=document.getElementById('others');
 
 const submitBtn=document.getElementById('submitBtn');
-//const sumDaily=document.getElementById('sumDaily');
+const result=document.getElementById('result');
+const sumDaily=document.getElementById('sumDaily');
 const todaySum=document.getElementById('todaySum');
-const food_sum=document.getElementById('food_sum');
-//const monthlyBtn=document.getElementById('monthlyBtn');
-//const monthlySumDisplay=document.getElementById('monthlySumDisplay');
+const food_Sum=document.getElementById('food_Sum');
+const monthlyBtn=document.getElementById('monthlyBtn');
+const monthlyResult=document.getElementById('monthlyResult');
+const totalExpense=document.getElementById('totalExpense');
+const totalFoodExpense=document.getElementById('totalFoodExpense');
 
 const items=JSON.parse(localStorage.getItem('items')) || [];
 
-const addItems=(date,breakfast,lunch,tea,dinner,others,dailyExpense)=>{
+//adding to array
+const addItems=(date,breakfast,lunch,tea,dinner,others,dailyExpense,foodExpense)=>{
     items.push({
         date:date.value,
         breakfast:breakfast.value,
@@ -23,43 +27,71 @@ const addItems=(date,breakfast,lunch,tea,dinner,others,dailyExpense)=>{
         tea:tea.value,
         dinner:dinner.value,
         others:others.value,
-        dailyExpense
+        dailyExpense,
+        foodExpense
     }
     )
 
     localStorage.setItem('items',JSON.stringify(items));
 
-    return {date,breakfast,lunch,tea,dinner,others,date,dailyExpense}
+    return {date,breakfast,lunch,tea,dinner,others,date,dailyExpense,foodExpense}
 }
 
-
+//finding daily sum
 const dailySum = (breakfast,lunch,tea,dinner,others)=>{
-    var sum=0;
-    sum = Number(breakfast.value) + Number(lunch.value) + Number(tea.value)
+    var daily_sum=0;
+    daily_sum = Number(breakfast.value) + Number(lunch.value) + Number(tea.value)
     + Number(dinner.value) + Number(others.value) ;
-    return sum
+    return daily_sum
 }
 
-const foodSum=(breakfast,lunch,tea,dinner)=>{
-    var sum_food=0;
-    sum_food=  Number(breakfast.value) + Number(lunch.value) + Number(tea.value)
+//finding food sum
+const foodSum = (breakfast,lunch,tea,dinner)=>{
+    var food_sum=0;
+    food_sum =  Number(breakfast.value) + Number(lunch.value) + Number(tea.value)
     + Number(dinner.value);
-    return sum_food
+    return food_sum
+}
+
+//finding monthly total expense
+const monthlyTotalExpense=(items)=>{
+    var monthly_Total_Expense=0;
+    for(let i=0;i<items.length;i++){
+        monthly_Total_Expense = monthly_Total_Expense + items[i].dailyExpense
+    }
+    return monthly_Total_Expense
 }
 
 
+//finding monthly total food expense
+const monthlyTotalFoodExpense=(items)=>{
+    var monthlyTotalFoodExpense=0;
+    for(let i=0;i<items.length;i++){
+        monthlyTotalFoodExpense = monthlyTotalFoodExpense + items[i].foodExpense;
+    }
+    return monthlyTotalFoodExpense
+}
+
+//function on clicking submit button
 submitBtn.addEventListener('click',(e)=>{
     e.preventDefault();
 
     var dailyExpense=dailySum(breakfast,lunch,tea,dinner,others);
+    var foodExpense=foodSum(breakfast,lunch,tea,dinner);
 
-    todaySum.innerHTML=dailyExpense;
+    result.insertAdjacentHTML('afterend',`<div id='sumDaily' style=" text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;"><h3 id='todaySum'>Today's sum = ${dailyExpense}</h3><h3 id='food_Sum'>food sum = ${foodExpense}</h3></div>`);
 
-    addItems(date,breakfast,lunch,tea,dinner,others,dailyExpense);
+   addItems(date,breakfast,lunch,tea,dinner,others,dailyExpense,foodExpense);
+})
 
-    //var foodExpense=foodSum(breakfast,lunch,tea,dinner);
-    // food_sum.innerHTML=foodExpense;
- 
+//function on clicking monthly button
+monthlyBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    monthlyResult.insertAdjacentHTML('afterend',`<div style='text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;'><h2>Total Expense = ${monthlyTotalExpense(items)}</h2><h2>Total Food Expense = ${monthlyTotalFoodExpense(items)}</h2></div>`);
+
 })
 
 
