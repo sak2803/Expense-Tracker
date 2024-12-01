@@ -69,7 +69,7 @@ fieldset{
     color: rgb(255, 255, 255);
     width: 32%;
     display: block;
-    font-weight: bold;
+    font-weight: lighter;
     padding: 5px 10px;
     font-size: 15px;
 
@@ -79,4 +79,65 @@ fieldset{
     width: 20%;
     background-color: #000000;
     color: rgb(21, 255, 0);
+    font-weight: bold;
+}
+
+/*mobile screen*/
+@media only screen and (min-width: 320px){
+    body{
+        width: 100%;
+    }
+    #header{
+        height: 200px;
+        width: 100%;
+    }
+    #title{
+        font-size: 80px;
+    }
+
+    form{
+        height: 800px;
+    }
+
+    #bgdiv{
+        height: 750px;
+        width: 80%;
+        margin-top: 100px;
+    }
+    #enterExpenseText{
+        font-size: 60px;
+    }
+    .items{
+        padding: 10px 0;
+    }
+    .label{
+        font-size: 50px;
+    }
+    .inputData{
+        width: 300px;
+        height: 50px;
+        font-size: 40px;
+    }
+    #submitBtn{
+        height: 60px;
+        font-size: 40px;
+        width: 300px;
+        margin-top: 20px;
+    }
+    #monthlyBtn{
+        height: 60px;
+        font-size: 38px;
+        width: 550px;
+        margin-top: 20px;
+        
+    }
+    p{
+        font-size: 40px;
+    }
+    #sumDaily{
+        font-size: 40px;
+    }
+    #sumMonthly{
+        font-size: 30px;
+    }
 }
