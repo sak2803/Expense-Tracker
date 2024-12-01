@@ -69,7 +69,7 @@ fieldset{
     color: rgb(255, 255, 255);
     width: 32%;
     display: block;
-    font-weight: lighter;
+    font-weight: bold;
     padding: 5px 10px;
     font-size: 15px;
 
@@ -79,5 +79,4 @@ fieldset{
     width: 20%;
     background-color: #000000;
     color: rgb(21, 255, 0);
-    font-weight: bold;
 }
