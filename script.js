@@ -89,7 +89,7 @@ submitBtn.addEventListener('click',(e)=>{
 monthlyBtn.addEventListener('click',(e)=>{
     e.preventDefault();
 
-    monthlyResult.insertAdjacentHTML('afterend',`<div style='text-align: center;
+    monthlyResult.insertAdjacentHTML('afterend',`<div id="sumMonthly" style='text-align: center;
         font-family: Georgia, 'Times New Roman', Times, serif;'><h2>Total Expense = ${monthlyTotalExpense(items)}</h2><h2>Total Food Expense = ${monthlyTotalFoodExpense(items)}</h2></div>`);
 
 })
