@@ -83,7 +83,7 @@ fieldset{
 }
 
 /*for mobile*/
-@media (min-width:320px) and (max-width:1000px){
+@media (min-width:320px) and (max-width:1024px){
     body{
         width: 100%;
     }
